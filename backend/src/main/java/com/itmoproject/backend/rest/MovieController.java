@@ -1,4 +1,6 @@
-package com.itmoproject.backend.model.rest;
+package com.itmoproject.backend.rest;
+
+import java.util.List;
 
 import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.repository.MovieRepository;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 public class MovieController {
 
     private MovieRepository movieRepository;
@@ -21,5 +23,10 @@ public class MovieController {
     @GetMapping("/{name}")
     public Movie getMovieByName(@PathVariable String name){
         return movieRepository.findByName(name);
+    }
+
+    @GetMapping
+    public List<Movie> getAllMovies(){
+        return movieRepository.findAll();
     }
 }

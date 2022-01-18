@@ -20,4 +20,14 @@ public class Movie {
 
     @NonNull
     private String name;
+
+    private int year;
+
+    // Продолжительность в минутах
+    private int duration;
+
+    // Бюджет в доллорах
+    private int budget;
+
+    private AgeRating ageRating;
 }

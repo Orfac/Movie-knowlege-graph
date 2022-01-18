@@ -3,6 +3,7 @@ package com.itmoproject.backend;
 import java.util.Arrays;
 import java.util.List;
 
+import com.itmoproject.backend.model.AgeRating;
 import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.repository.MovieRepository;
 
@@ -32,8 +33,20 @@ public class Application {
 			movieRepository.deleteAll();
             
 			var starWars = new Movie("Star_Wars");
+			starWars.setYear(1977);
+			starWars.setBudget(11000000);
+			starWars.setAgeRating(AgeRating.PG);
+			starWars.setDuration(121);
 			var shrek = new Movie("Shrek");
+			shrek.setYear(2001);
+			shrek.setBudget(60000000);
+			shrek.setAgeRating(AgeRating.PG);
+			shrek.setDuration(90);
 			var starTrek = new Movie("Star_Trek");
+			starTrek.setYear(2009);
+			starTrek.setBudget(15000000);
+			starTrek.setAgeRating(AgeRating.PG13);
+			starTrek.setDuration(127);
 
 
 			log.info("Loading of initial films is started");
