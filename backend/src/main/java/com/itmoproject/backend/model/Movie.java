@@ -1,8 +1,12 @@
 package com.itmoproject.backend.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Relationship;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,4 +34,14 @@ public class Movie {
     private int budget;
 
     private AgeRating ageRating;
+
+    @Relationship(type = "LANGUAGE")
+    private Set<Language> languages;
+
+    public void addLanguage(Language language) {
+        if (languages == null) {
+          languages = new HashSet<>();
+        }
+        languages.add(language);
+      }
 }
