@@ -1,0 +1,7 @@
+spring:
+  data:
+    neo4j:
+      username: neo4j
+      password: secret
+  neo4j:
+    uri: 'bolt://localhost:7687'
