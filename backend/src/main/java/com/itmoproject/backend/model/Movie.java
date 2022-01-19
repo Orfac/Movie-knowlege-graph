@@ -2,13 +2,14 @@ package com.itmoproject.backend.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -18,9 +19,10 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Movie {
+@JsonSerialize(as = Void.class)
+public class Movie  {
     @Id @GeneratedValue 
-    private Long id;
+    private UUID id;
 
     @NonNull
     private String name;
