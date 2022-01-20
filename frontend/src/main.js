@@ -1,14 +1,24 @@
-import { createApp } from "vue"
+import {createApp} from "vue"
 import VNetworkGraph from "v-network-graph"
-import "v-network-graph/lib/style.css"
 import App from "./App.vue"
 import axios from "axios";
 
-
-const app = createApp(App)
+import "v-network-graph/lib/style.css"
+import {createRouter, createWebHistory} from "vue-router";
+import HelloPage from "@/pages/HelloPage";
+import BigGraphPage from "@/pages/BigGraphPage";
 
 axios.defaults.baseURL = "http://localhost:8081"
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-app.use(VNetworkGraph)
-app.mount("#app")
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {path: '/', component: HelloPage},
+        {path: '/all', component: BigGraphPage}
+    ]
+})
+
+createApp(App)
+    .use(VNetworkGraph)
+    .use(router)
+    .mount("#app")
