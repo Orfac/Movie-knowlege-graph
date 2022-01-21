@@ -5,18 +5,27 @@
         Меню
       </p>
       <ul class="menu-list">
-        <li><router-link active-class="is-active" to="/">Стартовая страница</router-link></li>
-        <li><router-link active-class="is-active" to="/all">Показать весь граф</router-link></li>
-        <li><router-link to="">Персональные рекомендации</router-link></li>
-        <li><router-link to=""></router-link></li>
+        <menu-item to="/">Стартовая страница</menu-item>
+        <menu-item to="/all">Показать весь граф</menu-item>
+        <menu-item to="/prefs">Настроить предпочтения</menu-item>
+        <menu-item to="/recs">Персональные рекомендации</menu-item>
+        <li>
+          <ul>
+            <menu-item to="/newuser">Создать пользователя</menu-item>
+            <menu-item>Создать фильм</menu-item>
+          </ul>
+        </li>
       </ul>
     </aside>
   </div>
 </template>
 
 <script>
+import MenuItem from "@/components/MenuItem";
+
 export default {
-  name: "Menu"
+  name: "Menu",
+  components: {MenuItem}
 }
 </script>
 
