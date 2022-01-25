@@ -12,7 +12,7 @@
         <li>
           <ul>
             <menu-item to="/newuser">Создать пользователя</menu-item>
-            <menu-item>Создать фильм</menu-item>
+            <menu-item to="/newmovie">Создать фильм</menu-item>
           </ul>
         </li>
       </ul>

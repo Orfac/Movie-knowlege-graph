@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@JsonSerialize(as = Void.class)
 public class Movie  {
     @Id @GeneratedValue 
     private UUID id;

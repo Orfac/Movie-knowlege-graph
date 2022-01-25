@@ -1,14 +1,14 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <p class="title">Star Wars</p>
-      <p class="subtitle">2021</p>
+      <p class="title">{{ movie.name }}</p>
+      <p class="subtitle">{{ movie.year }}</p>
     </div>
     <footer class="card-footer">
       <p class="card-footer-item">
         <a class="icon">
-          <i @click="liked = !liked"
-             :class="[liked ? 'fas' : 'far', 'fa-lg', 'fa-thumbs-up']"
+          <i @click="like"
+             :class="[movie.liked ? 'fas' : 'far', 'fa-lg', 'fa-thumbs-up']"
           />
         </a>
       </p>
@@ -17,13 +17,43 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "MovieCard",
-  data() {
-    return {
-      liked: false
+  props: {
+    userId: {
+      type: String,
+      required: true
+    },
+    movie: {
+      type: Object,
+      required: true
     }
   },
+  methods: {
+    like() {
+      const url = `/users/${this.userId}/like`
+
+      if (this.movie.liked) {
+        axios.delete(url, {
+          params: {
+            movieId: this.movie.id
+          }
+        }).then(() => {
+          this.$emit('setLike', this.movie.id, false)
+        })
+      } else {
+        axios.post(url, null, {
+          params: {
+            movieId: this.movie.id
+          }
+        }).then(() => {
+          this.$emit('setLike', this.movie.id, true)
+        })
+      }
+    }
+  }
 }
 </script>
 

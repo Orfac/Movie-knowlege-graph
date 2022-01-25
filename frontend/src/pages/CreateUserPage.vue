@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CreateUserPage",
   data() {
@@ -31,7 +33,13 @@ export default {
   },
   methods: {
     create() {
-
+      axios.post('/users', {
+        name: this.username,
+        age: this.age
+      }).then(() => {
+        console.log('user created')
+        this.$router.push('/all')
+      })
     }
   }
 }
