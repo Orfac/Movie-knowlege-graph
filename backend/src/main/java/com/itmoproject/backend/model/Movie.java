@@ -5,9 +5,12 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.itmoproject.backend.model.relationships.Role;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import lombok.Data;
@@ -20,30 +23,49 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @JsonSerialize(as = Void.class)
-public class Movie  {
-    @Id @GeneratedValue 
-    private UUID id;
+public class Movie {
+	@Id
+	@GeneratedValue
+	private UUID id;
 
-    @NonNull
-    private String name;
+	@NonNull
+	@Property
+	private String name;
 
-    private int year;
+	@Property
+	private int year;
 
-    // Продолжительность в минутах
-    private int duration;
+	// Продолжительность в минутах
+	@Property
+	private int duration;
 
-    // Бюджет в доллорах
-    private int budget;
+	// Бюджет в доллорах
+	@Property
+	private int budget;
 
-    private AgeRating ageRating;
+	@Property
+	private AgeRating ageRating;
 
-    @Relationship(type = "LANGUAGE")
-    private Set<Language> languages;
+	@Relationship(type = "LANGUAGE")
+	private Set<Language> languages;
 
-    public void addLanguage(Language language) {
-        if (languages == null) {
-          languages = new HashSet<>();
-        }
-        languages.add(language);
-      }
+	@Relationship(type = "GENRE")
+	private Set<Genre> genres;
+
+	@Relationship(type = "STAFF")
+	private Set<Role> roles;
+
+	public void addLanguage(Language language) {
+		if (languages == null) {
+			languages = new HashSet<>();
+		}
+		languages.add(language);
+	}
+
+	public void addGenre(Genre genre) {
+		if (genres == null) {
+			genres = new HashSet<>();
+		}
+		genres.add(genre);
+	}
 }
