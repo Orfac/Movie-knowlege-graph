@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
  * Сервис получения данных для фронта для отрисовки графа
  */
 @Service
-public class GraphProvider {
+public class GraphDataManager {
     private final Neo4jClient client;
 
-    public GraphProvider(Neo4jClient client) {
+    public GraphDataManager(Neo4jClient client) {
         this.client = client;
     }
 
