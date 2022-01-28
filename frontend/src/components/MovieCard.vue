@@ -4,7 +4,7 @@
       <p class="title">{{ movie.name }}</p>
       <p class="subtitle">{{ movie.year }}</p>
     </div>
-    <footer class="card-footer">
+    <footer class="card-footer" v-if="likesEnabled">
       <p class="card-footer-item">
         <a class="icon">
           <i @click="like"
@@ -29,6 +29,10 @@ export default {
     movie: {
       type: Object,
       required: true
+    },
+    likesEnabled: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

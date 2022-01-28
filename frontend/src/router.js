@@ -2,10 +2,10 @@ import {createRouter, createWebHistory} from "vue-router";
 
 import HelloPage from "@/pages/HelloPage";
 import BigGraphPage from "@/pages/BigGraphPage";
-import RecommendationPage from "@/pages/SetPrefsPage";
 import CreateUserPage from "@/pages/CreateUserPage";
 import CreateMoviePage from "@/pages/CreateMoviePage";
 import SetPrefsPage from "@/pages/SetPrefsPage";
+import RecsPage from "@/pages/RecsPage";
 
 export default createRouter({
     history: createWebHistory(),
@@ -15,6 +15,6 @@ export default createRouter({
         {path: '/prefs', component: SetPrefsPage},
         {path: '/newuser', component: CreateUserPage},
         {path: '/newmovie', component: CreateMoviePage},
-        {path: '/recs', component: RecommendationPage}
+        {path: '/recs', component: RecsPage}
     ]
 })
