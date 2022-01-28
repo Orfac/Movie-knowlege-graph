@@ -1,7 +1,6 @@
 package com.itmoproject.backend.model.relationships;
 
-import java.util.UUID;
-
+import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.Staff;
 
 import org.springframework.data.neo4j.core.schema.RelationshipId;
@@ -15,5 +14,5 @@ public class Role {
 
     String title;
 
-    @TargetNode private Staff staff;
+    @TargetNode private Movie movie;
 }
