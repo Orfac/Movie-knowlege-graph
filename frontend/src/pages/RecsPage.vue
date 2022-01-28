@@ -53,7 +53,7 @@ export default {
   created() {
     axios.get('/users').then(response => {
       this.users = response.data
-      this.userId = this.items[0].id
+      this.userId = this.users[0].id
       this.updateMovies()
     })
   }
