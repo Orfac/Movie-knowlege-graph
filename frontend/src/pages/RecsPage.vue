@@ -27,6 +27,7 @@ export default {
   methods: {
     getUserInfo(id) {
       this.userId = id;
+      this.updateMovies()
     }
   },
   created() {
