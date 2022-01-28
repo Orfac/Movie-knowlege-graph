@@ -27,12 +27,13 @@ export default {
   methods: {
     getUserInfo(id) {
       this.userId = id;
+      this.updateMovies()
+    },
+    updateMovies() {
+      axios.get('movies').then(response => {
+        this.movies = response.data
+      })
     }
-  },
-  created() {
-    axios.get('movies').then(response => {
-      this.movies = response.data
-    })
   }
 }
 </script>
