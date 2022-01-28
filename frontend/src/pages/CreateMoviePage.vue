@@ -66,7 +66,7 @@
             mode="tags"
             :searchable="true"
             v-model="languages"
-            :options="['Русский', 'English']"/>
+            :options="languagesOptions"/>
       </div>
     </div>
 
