@@ -24,17 +24,20 @@ export default {
       userId: ''
     }
   },
+
   methods: {
     getUserInfo(id) {
       this.userId = id;
       this.updateMovies()
+    },
+    updateMovies() {
+      axios.get('users/' + this.userId + '/recommendations').then(response => {
+        this.movies = response.data
+      })
     }
   },
-  created() {
-    axios.get('users/' + this.userId + '/recommendations').then(response => {
-      this.movies = response.data
-    })
-  }
+
+
 }
 </script>
 

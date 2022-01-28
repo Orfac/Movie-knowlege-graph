@@ -66,7 +66,7 @@ public class UserController {
 		return repository.save(user);
 	}
 
-	@GetMapping("/{id}/recommendations/")
+	@GetMapping("/{id}/recommendations")
 	@ResponseStatus(HttpStatus.CREATED)
 	public List<Movie> getRecommended(
 		@PathVariable("id") UUID userId
