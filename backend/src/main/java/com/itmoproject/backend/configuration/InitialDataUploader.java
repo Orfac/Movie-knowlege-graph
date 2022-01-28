@@ -42,7 +42,7 @@ public class InitialDataUploader {
 
             log.info("Loading of initial films is started");
 
-            var movies = getMovies();
+            var movies = getMovies(genreRepository);
             updateMoviesWithOtherNodes(movies, languageRepository);
 
             movieRepository.saveAll(movies);
@@ -75,24 +75,37 @@ public class InitialDataUploader {
         return List.of(jack, josh);
     }
 
-    private List<Movie> getMovies() {
+    private List<Movie> getMovies(GenreRepository genreRepository) {
         var starWars = new Movie("Star_Wars");
         starWars.setYear(1977);
         starWars.setBudget(11000000);
         starWars.setAgeRating(AgeRating.PG);
         starWars.setDuration(121);
+        starWars.addGenre(genreRepository.findByName("Sci-Fi"));
+        starWars.addGenre(genreRepository.findByName("Action"));
 
         var shrek = new Movie("Shrek");
         shrek.setYear(2001);
         shrek.setBudget(60000000);
         shrek.setAgeRating(AgeRating.PG);
         shrek.setDuration(90);
+        shrek.addGenre(genreRepository.findByName("Action"));
+        shrek.addGenre(genreRepository.findByName("Comedy"));
 
         var starTrek = new Movie("Star_Trek");
         starTrek.setYear(2009);
         starTrek.setBudget(15000000);
         starTrek.setAgeRating(AgeRating.PG13);
         starTrek.setDuration(127);
+        starTrek.addGenre(genreRepository.findByName("Sci-Fi"));
+
+        var legend = new Movie("Legend");
+        legend.setYear(2015);
+        legend.setBudget(25000000);
+        legend.setAgeRating(AgeRating.PG13);
+        legend.setDuration(100);
+        legend.addGenre(genreRepository.findByName("Action"));
+        legend.addGenre(genreRepository.findByName("Crime"));
 
         return List.of(starWars, shrek, starTrek);
     }
