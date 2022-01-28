@@ -40,7 +40,7 @@ public class Movie {
 
 	// Бюджет в доллорах
 	@Property
-	private int budget;
+	private long budget;
 
 	@Property
 	private AgeRating ageRating;

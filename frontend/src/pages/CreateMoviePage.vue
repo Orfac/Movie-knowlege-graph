@@ -93,17 +93,23 @@ export default {
       budget: 0,
       genres: [],
       languages: [],
-      genresOptions: []
+      genresOptions: [],
+      languagesOptions: [],
     }
   },
-  created() {
-    axios.get('refs/ageratings').then(response => {
-      this.allRatings = response.data
-      this.ageRating = this.allRatings[0]
-    })
-    axios.get('genres').then(response => {
-      this.genresOptions = response.data.map(genreDto => genreDto.name);
-    })
+  async created() {
+    let response = await axios.get('refs/ageratings')
+
+    this.allRatings = response.data
+    this.ageRating = this.allRatings[0]
+
+    response = await axios.get('genres')
+
+    this.genresOptions = response.data.map(genreDto => genreDto.name)
+
+    response = await axios.get('/languages')
+
+    this.languagesOptions = response.data.map(dto => dto.name)
   },
   methods: {
     create() {

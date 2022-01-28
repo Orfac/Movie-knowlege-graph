@@ -8,13 +8,9 @@ import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.repository.MovieRepository;
 
 import com.itmoproject.backend.service.MovieService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/movies")
@@ -40,6 +36,7 @@ public class MovieController {
 	}
 
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public Movie addMovie(@RequestBody MovieDto movieDto) {
 		return movieService.addMovie(movieDto);
 	}

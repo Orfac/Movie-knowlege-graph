@@ -11,7 +11,7 @@ public class MovieDto {
 	private String name;
 	private int year;
 	private int duration;
-	private int budget;
+	private long budget;
 	private AgeRating ageRating;
 	private List<String> languages;
 	private List<String> genres;
