@@ -51,7 +51,7 @@ public class MovieController {
 		return movieRepository.findAll();
 	}
 
-	@PostMapping("recommendations")
+	@PostMapping("/recommendations")
 	public void processRecommendations(){
 		movieRecommendationService.processRecommendations();
 	}

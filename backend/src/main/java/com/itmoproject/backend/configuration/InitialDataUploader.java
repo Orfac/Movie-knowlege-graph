@@ -107,7 +107,7 @@ public class InitialDataUploader {
         legend.addGenre(genreRepository.findByName("Action"));
         legend.addGenre(genreRepository.findByName("Crime"));
 
-        return List.of(starWars, shrek, starTrek);
+        return List.of(starWars, shrek, starTrek,legend);
     }
 
     private void addBothLanguages(Movie movie, LanguageRepository languageRepository) {

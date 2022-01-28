@@ -4,7 +4,7 @@
       <p class="control has-icons-left">
     <span class="select">
       <select v-model="userId">
-        <option @click="getUserInfo"
+        <option @click="getUserInfo(item.id)"
                 v-for="(item, i) in users"
                 :value="item.id"
                 :key="i">{{ item.name }}</option>
@@ -39,7 +39,9 @@ export default {
     }
   },
   methods: {
-    getUserInfo() {
+    getUserInfo(id) {
+      console.log("current id + ", id)
+      this.userId = id;
       this.updateMovies()
     },
     updateMovies() {

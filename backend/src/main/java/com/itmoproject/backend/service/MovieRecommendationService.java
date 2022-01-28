@@ -38,7 +38,7 @@ public class MovieRecommendationService {
 			var usersMovieMatch = otherUsers.stream()
 				.map(it -> new UserMatch(it, intersectedMovies(movieLikes, it.getLiked())))
 				.sorted(Comparator.comparing(UserMatch::getMatchCount).reversed())
-				.filter(it -> it.matchCount > MOVIE_COUNT_MATCH_LOWEST)
+				.filter(it -> it.matchCount > 1)
 				.collect(Collectors.toList());
 
 			for (var matchUser : usersMovieMatch) {
