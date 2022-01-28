@@ -91,7 +91,6 @@ export default {
       ageRating: '',
       allRatings: [],
       budget: 0,
-      staff: [],
       genres: [],
       languages: [],
       genresOptions: []
@@ -108,7 +107,18 @@ export default {
   },
   methods: {
     create() {
-
+      axios.post('/movies', {
+        name: this.name,
+        year: this.year,
+        duration: this.duration,
+        ageRating: this.ageRating,
+        budget: this.budget,
+        genres: this.genres,
+        languages: this.languages
+      }).then(() => {
+        console.log('Movie created')
+        this.$router.push('/all')
+      })
     }
   }
 }
