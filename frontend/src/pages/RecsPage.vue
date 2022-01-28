@@ -30,7 +30,7 @@ export default {
     }
   },
   created() {
-    axios.get('movies').then(response => {
+    axios.get('users/' + this.userId + '/recommendations').then(response => {
       this.movies = response.data
     })
   }

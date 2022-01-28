@@ -7,6 +7,7 @@ import com.itmoproject.backend.dto.MovieDto;
 import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.repository.MovieRepository;
 
+import com.itmoproject.backend.service.MovieRecommendationService;
 import com.itmoproject.backend.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,16 @@ public class MovieController {
 
 	private final MovieService movieService;
 
+	private MovieRecommendationService movieRecommendationService;
+
 	public MovieController(
 		MovieRepository movieRepository,
-		MovieService movieService
+		MovieService movieService,
+		MovieRecommendationService movieRecommendationService
 	) {
 		this.movieRepository = movieRepository;
 		this.movieService = movieService;
+		this.movieRecommendationService = movieRecommendationService;
 	}
 
 	@GetMapping("/{id}")
@@ -44,5 +49,10 @@ public class MovieController {
 	@GetMapping
 	public List<Movie> getAllMovies() {
 		return movieRepository.findAll();
+	}
+
+	@PostMapping("recommendations")
+	public void processRecommendations(){
+		movieRecommendationService.processRecommendations();
 	}
 }
