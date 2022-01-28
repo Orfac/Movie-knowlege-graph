@@ -5,7 +5,7 @@
       <select v-model="currentIndex">
         <option @click="$emit('updated', item.id)"
                 v-for="(item, i) in items"
-                :value="i"
+                :value="item.id"
                 :key="i">{{ item.name }}</option>
       </select>
     </span>
@@ -23,13 +23,14 @@ export default {
   name: "UsersDropdown",
   data() {
     return {
-      currentIndex: 0,
+      currentIndex: '',
       items: []
     }
   },
   created() {
     axios.get('/users').then(response => {
       this.items = response.data
+      this.currentIndex = this.items[0].id
       this.$emit('updated', this.items[0].id)
     })
   }
