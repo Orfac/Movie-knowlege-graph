@@ -1,6 +1,20 @@
 <template>
   <div>
-    <UsersDropdown @updated="getUserInfo"/>
+    <div class="field" id="users">
+      <p class="control has-icons-left">
+    <span class="select">
+      <select v-model="userId">
+        <option @click="$emit('updated', item.id)"
+                v-for="(item, i) in users"
+                :value="item.id"
+                :key="i">{{ item.name }}</option>
+      </select>
+    </span>
+        <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+      </p>
+    </div>
     <div id="recommends">
       <MovieCard v-for="m in movies"
                  :movie="m"
@@ -11,17 +25,17 @@
 </template>
 
 <script>
-import UsersDropdown from "@/components/UsersDropdown";
 import MovieCard from "@/components/MovieCard";
 import axios from "axios";
 
 export default {
   name: "RecsPage",
-  components: {MovieCard, UsersDropdown},
+  components: {MovieCard},
   data() {
     return {
       movies: [],
-      userId: ''
+      userId: '',
+      users: []
     }
   },
 
@@ -36,7 +50,13 @@ export default {
       })
     }
   },
-
+  created() {
+    axios.get('/users').then(response => {
+      this.users = response.data
+      this.userId = this.items[0].id
+      this.updateMovies()
+    })
+  }
 
 }
 </script>
