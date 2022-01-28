@@ -3,9 +3,11 @@ package com.itmoproject.backend.configuration;
 import java.util.List;
 
 import com.itmoproject.backend.model.AgeRating;
+import com.itmoproject.backend.model.Genre;
 import com.itmoproject.backend.model.Language;
 import com.itmoproject.backend.model.Movie;
 import com.itmoproject.backend.model.User;
+import com.itmoproject.backend.model.repository.GenreRepository;
 import com.itmoproject.backend.model.repository.LanguageRepository;
 import com.itmoproject.backend.model.repository.MovieRepository;
 
@@ -27,6 +29,7 @@ public class InitialDataUploader {
             MovieRepository movieRepository,
             LanguageRepository languageRepository,
             UserRepository userRepository,
+            GenreRepository genreRepository,
             List<Neo4jRepository> repositories
     ) {
         return args -> {
@@ -35,6 +38,7 @@ public class InitialDataUploader {
             repositories.forEach(Neo4jRepository::deleteAll);
 
             addLanguages(languageRepository);
+            addGenres(genreRepository);
 
             log.info("Loading of initial films is started");
 
@@ -49,6 +53,13 @@ public class InitialDataUploader {
                     createUsers()
             );
         };
+    }
+
+    private void addGenres(final GenreRepository genreRepository) {
+        var genreNames = List.of("Thriller", "Comedy", "Documentary", "Sci-Fi", "Crime", "Sports", "Action", "Westerns");
+        for (var genre : genreNames){
+            genreRepository.save(new Genre(genre));
+        }
     }
 
     private void updateMoviesWithOtherNodes(List<Movie> movies, LanguageRepository languageRepository) {

@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.itmoproject.backend.model.relationships.Role;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
@@ -51,9 +50,6 @@ public class Movie {
 
 	@Relationship(type = "GENRE")
 	private Set<Genre> genres;
-
-	@Relationship(type = "STAFF")
-	private Set<Role> roles;
 
 	public void addLanguage(Language language) {
 		if (languages == null) {

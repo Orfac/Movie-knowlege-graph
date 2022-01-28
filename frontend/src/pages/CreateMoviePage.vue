@@ -47,16 +47,6 @@
         </div>
       </div>
     </div>
-    <div class="field">
-      <label class="label">Персонал</label>
-      <div class="field-body">
-        <multiselect
-            mode="tags"
-            :searchable="true"
-            v-model="staff"
-            :options="['ass', 'jack off']"/>
-      </div>
-    </div>
 
     <div class="field">
       <label class="label">Жанры</label>
@@ -65,7 +55,7 @@
             mode="tags"
             :searchable="true"
             v-model="genres"
-            :options="['ass', 'jack off']"/>
+            :options="genresOptions"/>
       </div>
     </div>
 
@@ -76,7 +66,7 @@
             mode="tags"
             :searchable="true"
             v-model="languages"
-            :options="['ass', 'jack off']"/>
+            :options="['Русский', 'English']"/>
       </div>
     </div>
 
@@ -104,12 +94,16 @@ export default {
       staff: [],
       genres: [],
       languages: [],
+      genresOptions: []
     }
   },
   created() {
     axios.get('refs/ageratings').then(response => {
       this.allRatings = response.data
       this.ageRating = this.allRatings[0]
+    })
+    axios.get('genres').then(response => {
+      this.genresOptions = response.data.map(genreDto => genreDto.name);
     })
   },
   methods: {
